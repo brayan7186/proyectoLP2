@@ -1,4 +1,43 @@
 package com.proyect.ecommerce.service.impl;
 
-public class ProductoServiceImpl {
+import com.proyect.ecommerce.model.Producto;
+import com.proyect.ecommerce.repository.ProductoRepository;
+import com.proyect.ecommerce.service.IProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+
+@Service
+public class ProductoServiceImpl  implements IProductoService {
+
+    @Autowired
+    ProductoRepository productoRepository;
+
+    @Override
+    public Producto save(Producto producto) {
+        return productoRepository.save(producto);
+    }
+
+    @Override
+    public Optional<Producto> get(Integer id) {
+        return productoRepository.findById(id);
+    }
+
+    @Override
+    public void update(Producto producto) {
+        productoRepository.save(producto);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        productoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> FindAll() {
+        return productoRepository.findAll();
+    }
 }
