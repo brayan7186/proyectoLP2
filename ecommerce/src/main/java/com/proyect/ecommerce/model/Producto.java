@@ -3,6 +3,7 @@ package com.proyect.ecommerce.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
