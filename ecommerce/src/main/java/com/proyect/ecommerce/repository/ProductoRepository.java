@@ -1,4 +1,5 @@
 package com.proyect.ecommerce.repository;
 
-public class ProductoRepository {
+public interface ProductoRepository {
+
 }
