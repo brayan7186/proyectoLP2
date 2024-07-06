@@ -4,10 +4,12 @@ import com.proyect.ecommerce.model.Orden;
 import com.proyect.ecommerce.repository.IOrdenRepository;
 import com.proyect.ecommerce.service.IOrdenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class OrdenSeriviceImpl implements IOrdenService {
     @Autowired
     private IOrdenRepository ordenRepository;
@@ -24,21 +26,37 @@ public class OrdenSeriviceImpl implements IOrdenService {
 
 
     public String generarNumeroOrden() {
-        int numer = 0;
+        int numero = 0;
         String numemorConcatenado = "";
-        List<Orden> ordens = findAll();
+        List<Orden> ordenes = findAll();
         List<Integer> numeros = new ArrayList<Integer>();
-        ordens.stream().forEach(o -> numeros.add(Integer.parseInt(o.getNumero())));
+        ordenes.stream().forEach(o -> numeros.add(Integer.parseInt(o.getNumero())));
 
 
-          if (ordens.isEmpty()){
-              numer= 1;
+          if (ordenes.isEmpty()){
+              numero= 1;
 
           }else
           {
-              numeros=numeros.stream().max(Integer::compare).get();
-              numer++;
+              numero=numeros.stream().max(Integer::compare).get();
+              numero++;
           }
+
+          if (numero <10){
+              numemorConcatenado="0000000000"+String.valueOf(numero);
+
+          }else if (numero <100){
+            numemorConcatenado="000000000"+String.valueOf(numero);
+
+        }
+    else if (numero <1000) {
+              numemorConcatenado = "00000000" + String.valueOf(numero);
+
+          }else if (numero <10000){
+                  numemorConcatenado="0000000"+String.valueOf(numero);
+
+              }
+
         return  numemorConcatenado;
     }
 
