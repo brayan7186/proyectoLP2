@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
+// hibernate
+// lombok
 @Getter
 @Setter
 @ToString
